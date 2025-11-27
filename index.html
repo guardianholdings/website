@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guardian Holdings JSC | Family Investment Fund</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050509;
+      --accent: #f4c46b;
+      --accent-soft: rgba(244,196,107,0.12);
+      --text: #f7f7fb;
+      --muted: #a4a4b3;
+      --border-subtle: rgba(255,255,255,0.06);
+      --card-radius: 24px;
+      --shadow-soft: 0 24px 80px rgba(0,0,0,0.65);
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #141424 0, #050509 55%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5,5,9,0.96), rgba(5,5,9,0.88), transparent);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 20px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color .18s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, #f4c46b, #f8e8b8);
+      transition: width .22s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      width: 100%;
+    }
+
+    /* SECTIONS */
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 64px 20px 40px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 40px;
+      align-items: center;
+      padding-top: 50px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.6vw, 2.75rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #f4c46b, #f8e8b8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-body {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 540px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .tag-pill {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 7px 14px;
+      border: 1px solid rgba(244,196,107,0.4);
+      background: rgba(244,196,107,0.07);
+      color: #f8e8b8;
+      white-space: nowrap;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      cursor: default;
+    }
+
+    .tag-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+      border-color: rgba(244,196,107,0.7);
+    }
+
+    /* HERO STATS CARD */
+    .hero-orbit {
+      border-radius: 32px;
+      padding: 24px 20px 20px;
+      background: radial-gradient(circle at top, #141426 0, #050509 55%);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .hero-orbit::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(244,196,107,0.16), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(132,199,255,0.10), transparent 55%);
+      opacity: 0.75;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .hero-orbit:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+      border-color: rgba(244,196,107,0.5);
+    }
+
+    .hero-orbit-header {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 14px;
+    }
+
+    .torch-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .torch-sub {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
+
+    .grid-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px dashed rgba(255,255,255,0.06);
+      padding: 9px 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+      transition: background-color .2s ease;
+    }
+
+    .grid-row:last-child {
+      border-bottom: none;
+    }
+
+    .grid-row:hover {
+      background-color: rgba(255,255,255,0.03);
+    }
+
+    .grid-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #f8e8b8;
+      white-space: nowrap;
+    }
+
+    /* ABOUT / MANDATE BLOCKS */
+    .about {
+      border-radius: var(--card-radius);
+      padding: 26px 24px 24px;
+      background: rgba(10,10,16,0.96);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(244,196,107,0.12), transparent 60%),
+        radial-gradient(circle at 80% 100%, rgba(132,199,255,0.08), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .about-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 2.7fr) minmax(0, 2fr);
+      gap: 26px;
+      align-items: flex-start;
+    }
+
+    .about-emphasis {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: #f8e8b8;
+      margin-bottom: 10px;
+    }
+
+    .about-body {
+      font-size: 0.88rem;
+      color: #dad9e8;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .about-aside {
+      border-radius: 20px;
+      padding: 18px 16px;
+      border: 1px solid rgba(244,196,107,0.45);
+      background: radial-gradient(circle at top left, rgba(244,196,107,0.22), transparent 60%);
+      font-size: 0.8rem;
+      color: #f8e8b8;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .about-aside-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .about-aside-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+    }
+
+    .mandate-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    /* ACCORDIONS */
+    .accordion {
+      margin-top: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    details {
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(0,0,0,0.3);
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    }
+
+    details[open] {
+      border-color: rgba(244,196,107,0.7);
+      background: rgba(10,10,18,0.9);
+      transform: translateY(-1px);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-title {
+      font-size: 0.8rem;
+      color: var(--text);
+    }
+
+    .summary-icon {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      transition: transform .25s ease;
+    }
+
+    details[open] .summary-icon {
+      transform: rotate(90deg);
+    }
+
+    .details-body {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    /* INVESTMENTS */
+    .invest-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .asset-card {
+      position: relative;
+      border-radius: 20px;
+      padding: 18px 16px 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.6);
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .asset-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(244,196,107,0.22), transparent 55%);
+      opacity: 0;
+      transition: opacity .22s ease;
+      pointer-events: none;
+    }
+
+    .asset-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.85);
+      border-color: rgba(244,196,107,0.7);
+      background: rgba(14,14,22,0.96);
+    }
+
+    .asset-card:hover::before {
+      opacity: 1;
+    }
+
+    .asset-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .asset-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      min-height: 44px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .asset-body {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .asset-meta {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(168,168,188,0.9);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .asset-pill {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(244,196,107,0.6);
+      color: #f8e8b8;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.04);
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 20px 26px;
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+
+    /* Large tablets / small laptops */
+    @media (max-width: 1040px) {
+      .invest-grid {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+      }
+    }
+
+    /* Tablets / big phones */
+    @media (max-width: 880px) {
+      .nav-inner {
+        padding-inline: 16px;
+        flex-wrap: wrap;
+      }
+
+      .section {
+        padding-inline: 16px;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+        padding-top: 34px;
+      }
+
+      .hero-orbit {
+        margin-top: 10px;
+      }
+
+      .about-inner {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .about-aside {
+        max-width: 420px;
+      }
+    }
+
+    /* Phones */
+    @media (max-width: 720px) {
+      .nav-links {
+        font-size: 0.7rem;
+        gap: 14px;
+      }
+
+      .invest-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-kicker {
+        text-align: left;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 520px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .section {
+        padding-top: 44px;
+      }
+
+      .invest-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .about {
+        padding: 20px 16px;
+      }
+    }
+
+    /* Very small screens / old devices */
+    @media (max-width: 360px) {
+      .brand-title {
+        font-size: 1rem;
+      }
+
+      .hero-title {
+        font-size: 1.6rem;
+      }
+
+      .hero-orbit {
+        padding: 18px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand-block">
+        <div class="brand-title">Guardian Holdings JSC</div>
+        <div class="brand-subtitle">Family Investment Fund</div>
+      </div>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#investments">Investments</a>
+        <a href="#mandate">Mandate</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="section hero">
+      <div>
+        <div class="hero-eyebrow">A family-owned, long-horizon investment fund</div>
+        <h1 class="hero-title">
+          Stewarding capital across <span>generations</span>, not quarters.
+        </h1>
+        <p class="hero-body">
+          Guardian Holdings JSC is a privately held, family-owned investment fund dedicated to the
+          preservation, protection, and long-term expansion of family wealth. Capital is deployed quietly,
+          deliberately, and with a time horizon measured in generations.
+        </p>
+
+        <div class="hero-tags">
+          <div class="tag-pill">Family-owned capital</div>
+          <div class="tag-pill">Multi-asset allocations</div>
+          <div class="tag-pill">High-conviction mandate</div>
+        </div>
+      </div>
+
+      <aside class="hero-orbit" aria-label="Guardian Holdings generational mandate stats">
+        <div class="hero-orbit-header">
+          <div class="torch-title">Generational mandate</div>
+          <div class="torch-sub">Preserve · Compound · Transfer</div>
+        </div>
+
+        <div class="grid-row">
+          <span>Capital perspective</span>
+          <span class="grid-value">Multi-decade</span>
+        </div>
+        <div class="grid-row">
+          <span>Ownership</span>
+          <span class="grid-value">Family-owned</span>
+        </div>
+        <div class="grid-row">
+          <span>Governance</span>
+          <span class="grid-value">Family managed</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-heading">
+        <h2 class="section-title">About us</h2>
+        <p class="section-kicker">Privately held · Family owned & managed</p>
+      </div>
+
+      <section class="about" aria-label="About Guardian Holdings JSC">
+        <div class="about-inner">
+          <div>
+            <p class="about-emphasis">
+              We are not a product. We are the family’s balance sheet, institutionalised.
+            </p>
+            <p class="about-body">
+              Guardian Holdings JSC exists to centralise, safeguard, and compound a single family’s capital base.
+              There are no external investors, no fundraising cycles, and no mandate drift driven by short-term
+              performance optics.
+            </p>
+            <p class="about-body">
+              Our framework blends real assets, strategically important industries, and intellectual property-driven
+              businesses, focusing on domains where security, durability, and structural demand form the backbone of
+              long-term value creation.
+            </p>
+            <p class="about-body">
+              Governance is intentionally concentrated. Every allocation, risk decision, and liquidity policy is overseen
+              by the family and a small circle of trusted advisors, ensuring absolute alignment with the objective of
+              preserving real wealth and enhancing strategic optionality over time.
+            </p>
+
+            <!-- Interactive accordion -->
+            <div class="accordion" aria-label="Additional information">
+              <details>
+                <summary>
+                  <span class="summary-title">Risk & capital discipline</span>
+                  <span class="summary-icon">›</span>
+                </summary>
+                <div class="details-body">
+                  We prioritise permanent capital preservation above headline returns. Drawdown control, prudent use of
+                  leverage, and disciplined position sizing underpin every allocation decision.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  <span class="summary-title">Time horizon</span>
+                  <span class="summary-icon">›</span>
+                </summary>
+                <div class="details-body">
+                  Investment theses are evaluated on their merit over 5–20 year windows, with the flexibility to act
+                  opportunistically when markets dislocate or misprice long-term fundamentals.
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <aside class="about-aside">
+            <div class="about-aside-label">Family mandate</div>
+            <div class="about-aside-main">
+              Preserve real wealth in real terms, grow intrinsic value, and hand the next generation a stronger,
+              more resilient balance sheet than the one received.
+            </div>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <!-- INVESTMENTS -->
+    <section class="section" id="investments">
+      <div class="section-heading">
+        <h2 class="section-title">What we invest in</h2>
+        <p class="section-kicker">Deliberately diversified · Strategically concentrated</p>
+      </div>
+
+      <div class="invest-grid" aria-label="Investment focus areas">
+        <!-- Defence -->
+        <article class="asset-card">
+          <div class="asset-label">01 · Defence</div>
+          <h3 class="asset-name">Defence &amp; strategic security</h3>
+          <p class="asset-body">
+            Exposure to defence platforms, critical supply chains, and enabling technologies that underpin national
+            and global security, with durable demand and high barriers to entry.
+          </p>
+          <div class="asset-meta">
+            <span>Resilient cash flows</span>
+            <span class="asset-pill">Core allocation</span>
+          </div>
+        </article>
+
+        <!-- Education -->
+        <article class="asset-card">
+          <div class="asset-label">02 · Education</div>
+          <h3 class="asset-name">Education &amp; human capital</h3>
+          <p class="asset-body">
+            Investments in institutions and platforms that compound human capability—from targeted vocational training
+            to scalable digital learning infrastructure.
+          </p>
+          <div class="asset-meta">
+            <span>Structural demand</span>
+            <span class="asset-pill">Legacy aligned</span>
+          </div>
+        </article>
+
+        <!-- Real estate -->
+        <article class="asset-card">
+          <div class="asset-label">03 · Real estate</div>
+          <h3 class="asset-name">Real assets &amp; property</h3>
+          <p class="asset-body">
+            Long-term holdings in income-generating, strategically located properties offering inflation protection,
+            optionality of use, and enduring relevance.
+          </p>
+          <div class="asset-meta">
+            <span>Hard-asset core</span>
+            <span class="asset-pill">Income &amp; hedge</span>
+          </div>
+        </article>
+
+        <!-- Software -->
+        <article class="asset-card">
+          <div class="asset-label">04 · Software</div>
+          <h3 class="asset-name">Cybersecurity &amp; defence software</h3>
+          <p class="asset-body">
+            Positions in software firms securing digital and physical infrastructure—cybersecurity, data protection,
+            and defence-grade integrations where failure is not an option.
+          </p>
+          <div class="asset-meta">
+            <span>Scalable economics</span>
+            <span class="asset-pill">Growth vector</span>
+          </div>
+        </article>
+
+        <!-- Public markets -->
+        <article class="asset-card">
+          <div class="asset-label">05 · Public markets</div>
+          <h3 class="asset-name">Publicly traded assets</h3>
+          <p class="asset-body">
+            A globally diversified portfolio of equities, credit, and liquid alternatives providing liquidity,
+            tactical flexibility, and the ability to express macro views.
+          </p>
+          <div class="asset-meta">
+            <span>Liquidity &amp; breadth</span>
+            <span class="asset-pill">Dynamic sleeve</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- MANDATE & ACCESS -->
+    <section class="section" id="mandate">
+      <div class="section-heading">
+        <h2 class="section-title">Mandate &amp; access</h2>
+        <p class="section-kicker">Closed to external capital</p>
+      </div>
+
+      <section class="about" aria-label="Mandate and access">
+        <div class="about-inner">
+          <div>
+            <p class="about-body">
+              Guardian Holdings JSC operates exclusively to manage the assets of its founding family. We do not accept
+              external capital, and nothing on this site constitutes an offer to sell or a solicitation to buy any
+              security or financial instrument.
+            </p>
+            <p class="about-body">
+              Professional counterparties, operating partners, and advisors who believe there may be alignment with our
+              mandate typically engage through existing relationships or trusted introductions. Any potential engagement
+              is evaluated foremost on strategic fit, risk integrity, and the potential to strengthen—never compromise—
+              the family’s long-term position.
+            </p>
+
+            <div class="mandate-note">
+              For informational purposes only · Not an offer or solicitation
+            </div>
+
+            <!-- Mandate details accordions -->
+            <div class="accordion" aria-label="Mandate details">
+              <details>
+                <summary>
+                  <span class="summary-title">Capital acceptance</span>
+                  <span class="summary-icon">›</span>
+                </summary>
+                <div class="details-body">
+                  The structure is closed to outside investors. All capital deployed is proprietary family capital,
+                  ensuring alignment between risk, governance, and long-horizon objectives.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  <span class="summary-title">Counterparty engagement</span>
+                  <span class="summary-icon">›</span>
+                </summary>
+                <div class="details-body">
+                  Engagements are considered where the family’s mandate, risk appetite, and time horizon are fully
+                  compatible with the opportunity and counterparties involved.
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <aside class="about-aside">
+            <div class="about-aside-label">Access</div>
+            <div class="about-aside-main">
+              While the fund is structured around proprietary family capital, we actively review investment proposals
+              and joint-venture opportunities that reinforce the family’s long-term compounding trajectory.
+            </div>
+          </aside>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2025 Guardian Holdings JSC. All rights reserved.</span>
+      <span>Family investment fund · For informational purposes only</span>
+    </div>
+  </footer>
+</body>
+</html>
